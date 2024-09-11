@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iot_pulse_monitor/src/data/pulse_repo.dart';
-import 'package:iot_pulse_monitor/src/screens/home_screen/presentation/home_screen.dart';
+import 'package:iot_pulse_monitor/src/screens/config_screen/presentation/config_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider<PulseRepo>(
+    return ChangeNotifierProvider<PulseRepo>(
       create: (context) => PulseRepo(),
       child: MaterialApp(
         title: 'IOT Pulse Monitor',
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomeScreen(),
+        home: const ConfigScreen(),
       ),
     );
   }

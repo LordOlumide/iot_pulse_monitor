@@ -1,9 +1,61 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:eventflux/eventflux.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class PulseRepo {
-  String esp32Address = '192.168.118.213';
+class PulseRepo extends ChangeNotifier {
+  String? _esp32Address;
+
+  int _currentBPM = 0;
+  int get currentBPM => _currentBPM;
+
+  StreamSubscription<EventFluxData>? bpmStream;
+
+  // Function to connect to the ESP32 webserver and listen for SSE events
+  Future<void> connectToWebServer(String ipAddress) async {
+    final url = 'http://$ipAddress/events';
+
+    try {
+      EventFlux.instance.connect(
+        EventFluxConnectionType.get,
+        url,
+        onSuccessCallback: (EventFluxResponse? response) {
+          if (response?.status == EventFluxStatus.connected &&
+              response?.stream != null) {
+            bpmStream = response?.stream?.listen((data) {
+              print(data.data);
+
+              if ((!data.data.contains('hello')) &&
+                  Map<String, String>.from(json.decode(data.data))
+                      .containsKey('heartrate')) {
+                _currentBPM = int.parse(Map<String, String>.from(
+                    json.decode(data.data))['heartrate']!);
+              }
+              notifyListeners();
+              // print(Map<String, int>.from(json.decode(data.data)));
+            });
+          }
+        },
+        autoReconnect: true,
+        reconnectConfig: ReconnectConfig(
+          mode: ReconnectMode.linear,
+          interval: const Duration(seconds: 5),
+          maxAttempts: 1, // or -1 for infinite,
+          onReconnect: () {},
+        ),
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void dispose() {
+    bpmStream?.cancel();
+    super.dispose();
+  }
 
   // Future<bool> discoverEsp32(String esp32Hostname) async {
   //   print('=========== Entered 1 ===================');
@@ -50,8 +102,8 @@ class PulseRepo {
   // }
 
   Future<Map<String, int>> fetchData() async {
-    if (esp32Address.isNotEmpty) {
-      final response = await http.get(Uri.parse('$esp32Address/data'));
+    if (_esp32Address?.isNotEmpty ?? false) {
+      final response = await http.get(Uri.parse('$_esp32Address/data'));
 
       if (response.statusCode == 200) {
         return Map<String, int>.from(json.decode(response.body));

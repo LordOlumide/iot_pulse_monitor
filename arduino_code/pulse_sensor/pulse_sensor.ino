@@ -15,9 +15,9 @@
 JSONVar pulseData;  // We use JSON to pass data from the Arduino sketch to the Javascript
 
 const int PULSE_INPUT = 34;
-const int PULSE_BLINK = 32;
-const int PULSE_FADE = 5;
-const int THRESHOLD = 580;  // Determine which Signal to "count as a beat", and which to ingore.
+const int PULSE_BLINK = 25;
+const int PULSE_FADE = 26;
+const int THRESHOLD = 500;  // Determine which Signal to "count as a beat", and which to ingore.
 
 PulseSensorPlayground pulseSensor;
 
@@ -109,6 +109,7 @@ if (!!window.EventSource) {
 String updatePulseDataJson() {
   pulseData["heartrate"] = String(pulseSensor.getBeatsPerMinute());
   String jsonString = JSON.stringify(pulseData);
+    Serial.println("Sending JSON: " + jsonString); // Debugging line
   return jsonString;
 }
 
