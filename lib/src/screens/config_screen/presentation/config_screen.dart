@@ -16,7 +16,7 @@ class _ConfigScreenState extends State<ConfigScreen> {
   @override
   void initState() {
     super.initState();
-    hostnameController.text = 'pulsesensor_esp32.local';
+    hostnameController.text = 'pulse32';
   }
 
   @override
@@ -54,15 +54,15 @@ class _ConfigScreenState extends State<ConfigScreen> {
   }
 
   Future<void> _onConnectPressed() async {
-    print('=========== starting request ===================');
-    if (await context
-        .read<PulseRepo>()
-        .discoverEsp32(hostnameController.text)) {
-      print('=========== Ended request ===================');
-      if (mounted) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()));
-      }
-    }
-  }
+  //   print('=========== starting request ===================');
+  //   if (await context
+  //       .read<PulseRepo>()
+  //       .discoverEsp32(hostnameController.text)) {
+  //     print('=========== Ended request ===================');
+  //     if (mounted) {
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const HomeScreen()));
+  //     }
+  //   }
+  // }
 }
