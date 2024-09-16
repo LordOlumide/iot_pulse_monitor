@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    state.avgBpm.toString(),
+                    state.isFingerDetected ? state.avgBpm.toString() : '0',
                     style: const TextStyle(
                         fontSize: 50, fontWeight: FontWeight.w700),
                   ),
