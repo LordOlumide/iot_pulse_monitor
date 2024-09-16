@@ -120,7 +120,11 @@ function getData(){
     if (this.readyState == 4 && this.status == 200) {
       var Jobj = JSON.parse(this.responseText);
       console.log(Jobj);
-      document.getElementById("bpm").innerHTML = Jobj.heartrate;
+      if (jobj.isFingerDetected === true) {
+        document.getElementById("bpm").innerHTML = Jobj.avgBPM;
+      } else {
+        document.getElementById("bpm").innerHTML = "0";
+      }
     }
   }; 
   xhr.open("GET", "/data", true);
@@ -143,7 +147,7 @@ if (!!window.EventSource) {
   source.addEventListener('new_data', function(e) {
     console.log("new_data", e.data);
     var Jobj = JSON.parse(e.data);
-    document.getElementById("bpm").innerHTML = Jobj.heartrate;
+    document.getElementById("bpm").innerHTML = Jobj.avgBPM;
   }, false);
 }
 </script>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iot_pulse_monitor/src/data/pulse_repo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_pulse_monitor/src/data/config_cubit.dart';
 import 'package:iot_pulse_monitor/src/screens/config_screen/presentation/config_screen.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<PulseRepo>(
-      create: (context) => PulseRepo(),
+    return BlocProvider<ConfigCubit>(
+      create: (context) => ConfigCubit(),
       child: MaterialApp(
         title: 'IOT Pulse Monitor',
         theme: ThemeData(
