@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_pulse_monitor/src/data/config_cubit.dart';
 import 'package:iot_pulse_monitor/src/screens/config_screen/presentation/config_screen.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

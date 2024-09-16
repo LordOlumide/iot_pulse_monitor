@@ -15,6 +15,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   eventflux: ^2.2.0
   equatable: ^2.0.5
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:
