@@ -13,20 +13,21 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Heart Monitor',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         elevation: 5,
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: [
             const SizedBox(height: 25),
             Text(
               'Heart Rate: ${pulseManager.currentBPM} (bpm)',
               style: const TextStyle(fontSize: 27, fontWeight: FontWeight.w600),
             ),
+            const SizedBox(height: 25),
           ],
         ),
       ),

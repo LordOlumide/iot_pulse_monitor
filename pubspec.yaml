@@ -12,8 +12,6 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  multicast_dns: ^0.3.2+7
-  http: ^1.2.2
   provider: ^6.1.2
   eventflux: ^2.2.0
 

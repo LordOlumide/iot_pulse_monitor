@@ -26,15 +26,16 @@ class _ConfigScreenState extends State<ConfigScreen> {
   }
 
   void connectionListener() async {
-    if (context.read<PulseRepo>().bpmStream != null) {
-      context.read<PulseRepo>().removeListener(connectionListener);
-      Navigator.pushReplacement(
+    if (context.read<PulseRepo>().freshlyConnected == true) {
+      context.read<PulseRepo>().freshlyConnected = false;
+      Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     }
   }
 
   @override
   void dispose() {
+    context.read<PulseRepo>().removeListener(connectionListener);
     ipAddressController.dispose();
     ipAddressFocusNode.dispose();
     super.dispose();
