@@ -69,7 +69,7 @@ const int fingerDetectedLed = 26;
 const char *ssid = "PulseSensor";
 const char *password = "11111111";
 
-// Create AsyncWebServer object on port 80. Create an Event Source on /events
+// Create AsyncWebServer object on port 80. Create an Event Source on "/events" endpoint
 AsyncWebServer server(80);
 AsyncEventSource events("/events");
 
