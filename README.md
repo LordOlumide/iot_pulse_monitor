@@ -21,7 +21,7 @@ The IoT Pulse Monitor is a health monitoring device designed to measure and disp
 7. **Adaptable Box**
 
 
-## Screenshots
+## Pictures
 
 <img src="pictures/01.jpeg">
 
