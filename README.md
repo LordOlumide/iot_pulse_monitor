@@ -20,6 +20,18 @@ The IoT Pulse Monitor is a health monitoring device designed to measure and disp
 6. **ESP32 WROOM-32D Development Board**
 7. **Adaptable Box**
 
+
+## Screenshots
+
+<img src="pictures/01.jpeg">
+
+<img src="pictures/02.jpeg">
+
+<img src="pictures/03.jpeg">
+
+<img src="pictures/04.jpeg">
+
+
 ## Bill of Materials
 | S/N | Component                                      | Price (₦) |
 |-----|-----------------------------------------------|-----------|
@@ -83,6 +95,7 @@ The IoT Pulse Monitor combines traditional heart rate sensing with modern IoT te
 
 ## Contributors
 - **Group 5**  
+  Class 23
   Department of Electrical and Electronics Engineering,  
   Federal University of Technology, Akure.  
   September 2024
